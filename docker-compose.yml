@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # SERVIÇO 1: api_app
+  api_app:
+    build: .
+    container_name: lista-compras-api
+    ports:
+      - "3000:3000"
+    environment:
+      # Variáveis de Conexão com o Banco de Dados
+      DB_HOST: db
+      DB_USER: user_comp
+      DB_PASSWORD: senha_segura
+      DB_NAME: lista_compras_db
+      DB_PORT: 5432
+    depends_on:
+      - db # Garante que o DB "suba" primeiro
+    volumes:
+      - .:/usr/src/app # Permite a realizar a edição do código localmente
+
+  # SERVIÇO 2: db (O Banco de Dados PostgreSQL)
+  db:
+    image: postgres:16-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: user_comp
+      POSTGRES_PASSWORD: senha_segura
+      POSTGRES_DB: lista_compras_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Mantém os dados mesmo se o container parar
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Inicialização Automática
+      
+volumes:
+  postgres_data:

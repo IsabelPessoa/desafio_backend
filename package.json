@@ -1,0 +1,27 @@
+{
+  "name": "desafio_backend",
+  "version": "1.0.0",
+  "description": "Essa atividade é para o acompanhamento de meu período Treinee na empresa júnior Compjunior.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsabelPessoa/desafio_backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsabelPessoa/desafio_backend/issues"
+  },
+  "homepage": "https://github.com/IsabelPessoa/desafio_backend#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
