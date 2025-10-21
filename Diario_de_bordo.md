@@ -39,8 +39,7 @@ identificação: 'id', 'email', 'senha', 'nome_usuario',
 'nivel_de_acesso', sendo desnecessária a "Foreign Key", já 
 que a Chave Estrangeira é uma restrição de integridade que 
 atua nos bastidores de um banco de dados, sendo uma preocupação 
-exclusiva dos desenvolvedores e, portanto, desnecessária ao 
-usuário.
+apenas interligar outros bancos a este e não o contrário.
 
 As listas deverão possuir 3 informações básicas, também para
 identificação: 'id', 'titulo', 'data_de_criacao'. Deverá 
@@ -162,4 +161,92 @@ Bem, já são 01:16 da manhã do dia seguinte e eu fiz bastante coisa,
 estou com sono!!! vou indo dormir então, amanhã eu retorno para continuar.
 
 ****
+****
+
+## 21/10/2025
+
+Muito bem, agora que finalizei e testei o projeto é preciso 
+fazer um tutorial de como ele funciona para que as pessoas (vulgo superiores
+da Comp) venham a executa-lo de forma adequada.
+
+
+Separei em etapas para ficar mais fácil de acompanhar o que já foi feito e
+o que ainda está para ser feito.
+
+### Pré-requisitos (O que você precisa ter instalado)
+Você precisará das seguintes ferramentas instaladas e ativas no seu ambiente
+de desenvolvimento:
+- Git: Para clonar o repositório
+- Node.js e NPM: Para instalar as dependências da aplicação
+- Docker Desktop: Essencial para containerização da API e do 
+    Banco de Dados
+- Insomnia/Postman: Para testar os endpoints HTTP
+
+Observação (Windows): Para que o Docker Desktop funcione, é essencial que 
+a Virtualização esteja Habilitada na BIOS/UEFI do seu computador, e que o 
+WSL 2 esteja instalado e configurado.
+
+### Instalação e Inicialização da Infraestrutura
+Execute estes comandos no terminal, na ordem, para subir toda a sua 
+infraestrutura:
+
+**Clonar e Acessar o Projeto**
+1. Clone o repositório para o seu computador
+
+        git clone https://github.com/IsabelPessoa/desafio_backend.git
+
+2. Navegue até a pasta do projeto
+
+        cd ~/usuario/endereco_generico/desafio_backend
+
+**Instalar Dependências e Iniciar o Docker**
+- Instale as dependências Node.js (Express, PG, dotenv)
+
+        npm install
+
+1. Inicie a Infraestrutura Docker:
+
+        --build: Constrói a imagem da API a partir do Dockerfile
+
+        -d: Roda os containers em modo 'detached' (em segundo plano)
+
+        docker compose up --build -d
+
+O que o comando faz: O Docker Compose lê o docker-compose.yml, sobe o 
+container PostgreSQL (postgres-db) e o container API (lista-compras-api), 
+conectando-os automaticamente. O script init.sql é executado na 
+primeira vez, criando todas as tabelas.
+
+2. Verifique o Status dos Containers
+Para garantir que tudo subiu corretamente:
+
+        docker ps
+
+Resultado Esperado: Você deve ver os dois containers (lista-compras-api 
+e postgres-db) listados e com o status Up (Ativo).
+
+### Teste de Conexão e Validação
+O teste do endpoint /status é a prova final de que a API está rodando e 
+se comunicando com o Banco de Dados.
+
+1. Abra o Insomnia ou Postman.
+
+2. Crie uma nova requisição com o Método: GET.
+
+3. Insira a URL: http://localhost:3000/status
+
+4. Envie a requisição.
+
+Resultado Esperado
+Status HTTP: 200 OK
+
+Corpo da Resposta (JSON):
+
+    {
+
+        "message": "Infraestrutura OK: API e Banco de Dados conectados com sucesso!",
+        "dbTime": "2025-10-21T..." 
+
+    }
+
 ****

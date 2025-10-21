@@ -1,12 +1,10 @@
--- Arquivo de requisitos das entidades:
-
--- Tabela 1: Usuários (ambos os níveis de acesso: 'administrador', 'padrao')
+-- Tabela 1: Usuarios (ambos os níveis de acesso: 'administrador', 'padrao')
 CREATE TABLE Usuarios (
     id SERIAL PRIMARY KEY,
     email VARCHAR(100) UNIQUE NOT NULL,
-    senha VARCHAR(50) NOT NULL,
-    nome_do_usuario VARCHAR(50), NOT NULL,
-    nivel_acesso VARCHAR(10) DEFAULT 'padrao' CHECK (nivel_acesso IN ('admin', 'padrao')),
+    senha VARCHAR(255) NOT NULL,
+    nome_usuario VARCHAR(50) NOT NULL, 
+    nivel_acesso VARCHAR(10) DEFAULT 'padrao' CHECK (nivel_acesso IN ('admin', 'padrao'))
 );
 
 -- Tabela 2: Listas (Relação 1:N com Usuarios)
