@@ -144,11 +144,11 @@ coisas essenciais:
 ele é a alma do nosso projeto.
 
 ### Dockerfile
-Dockerfile, ensina o Docker a empacotar seu código Node.js em um 
+Dockerfile, ensina o Docker a empacotar o código Node.js em um 
 container, cumprindo o requisito de containerização.
 
 ### docker-compose.yml
-Eeste arquivo é essencial porque ele define e conecta os dois 
+Este arquivo é essencial porque ele define e conecta os dois 
 containers (a API e o PostgreSQL).
 
 ### init.sql
